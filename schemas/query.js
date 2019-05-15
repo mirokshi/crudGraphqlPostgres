@@ -1,6 +1,7 @@
 const { db } = require("../pgAdaptor");
-const { GraphQLObjectType, GraphQLID } = require("graphql");
-const { ProveidorsType, ProductesType, GuanysTypes  } = require("./types");
+
+const { GraphQLObjectType, GraphQLID,GraphQLString,GraphQLFloat } = require("graphql");
+const { ProductesType} = require("./types");
 
 const RootQuery = new GraphQLObjectType({
     name: "RootQueryType",
@@ -8,10 +9,14 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         Producte: {
             type: ProductesType,
-            args: { clau: { type: GraphQLID } },
+            args: {
+                clau: { type: GraphQLID }
+                },
             resolve(parentValue, args) {
-                const query = `SELECT * FROM productes WHERE clau=$1`;
-                const values = [args.id];
+                const query = `select * from productes where clau = $1;`;
+                const values = [
+                    args.clau
+                ];
 
                 return db
                     .one(query, values)
@@ -19,32 +24,7 @@ const RootQuery = new GraphQLObjectType({
                     .catch(err => err);
             }
         },
-        Proveidor: {
-            type: ProveidorsType,
-            args: { empresa: { type: GraphQLID } },
-            resolve(parentValue, args) {
-                const query = `SELECT * FROM proveidors WHERE empresa=$1`;
-                const values = [args.id];
 
-                return db
-                    .one(query, values)
-                    .then(res => res)
-                    .catch(err => err);
-            }
-        },
-        Guany: {
-            type: GuanysTypes,
-            args: { venda: { type: GraphQLID } },
-            resolve(parentValue, args) {
-                const query = `SELECT * FROM guanys WHERE venda=$1`;
-                const values = [args.id];
-
-                return db
-                    .one(query, values)
-                    .then(res => res)
-                    .catch(err => err);
-            }
-        },
     }
 });
 

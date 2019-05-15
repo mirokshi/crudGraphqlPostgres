@@ -1,5 +1,5 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLFloat } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLFloat,GraphQLID } = graphql;
 
 const ProductesType = new GraphQLObjectType({
     name: "Productes",
@@ -9,28 +9,8 @@ const ProductesType = new GraphQLObjectType({
         tipus: { type: GraphQLString },
         especificacio: { type: GraphQLString },
         psuggerit: { type: GraphQLFloat },
-        clau: { type: GraphQLString }
+        clau: { type: GraphQLID }
     }
-});
-
-const ProveidorsType = new GraphQLObjectType({
-    name: "Proveidors",
-    type: "Query",
-    fields: {
-        empresa: { type: GraphQLString },
-        credit: { type: GraphQLString },
-        efectiu: { type: GraphQLString },
-    }
-});
-
-const GuanysTypes = new GraphQLObjectType({
-   name: "Guanys",
-   type: "Query",
-   fields:{
-       venda: { type: GraphQLString },
-       factor: { type: GraphQLString },
-   }
 });
 exports.ProductesType = ProductesType;
-exports.ProveidorsType = ProveidorsType;
-exports.GuanysTypes = GuanysTypes;
+

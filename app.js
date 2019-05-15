@@ -8,7 +8,7 @@ const { mutation } = require("./schemas/mutation");
 
 const schema = new GraphQLSchema({
     query,
-    mutation
+    mutation,
 });
 
 var app = express();
