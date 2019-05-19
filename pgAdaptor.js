@@ -13,13 +13,6 @@ const config = {
 
 const db = pgp(config);
 
-// db.one("select * from productes where clau=1;")
-//     .then(res => {
-//         console.log(res);
-//     }).catch((error) =>{
-//     console.log(error);
-// });
-
 // db.query("select * from productes;")
 //     .then(res => {
 //         console.log(res);

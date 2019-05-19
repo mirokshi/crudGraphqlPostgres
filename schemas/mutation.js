@@ -48,7 +48,7 @@ const RootMutation = new GraphQLObjectType({
                     .catch(err => err);
             }
         },
-        updateProducte:{
+        updateParProducte:{
             type: ProductesType,
             args: {
                 part: { type: GraphQLString },
